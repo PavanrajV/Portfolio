@@ -15,6 +15,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #0a192f;
     color: #ccd6f6;
@@ -81,7 +85,8 @@ section {
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
 }
 
 /* Contact */
@@ -121,14 +126,23 @@ footer {
 <div class="hero">
     <h1>Hi, I'm Pavanraj 👋</h1>
     <p>I am a <span class="typing"></span></p>
+
+    <div style="margin-top:20px;">
+        <a href="https://github.com/yourusername" target="_blank">GitHub</a> |
+        <a href="#" target="_blank">LinkedIn</a> |
+        <a href="#" target="_blank">Resume</a>
+    </div>
 </div>
 
 <section id="about">
     <h2>About Me</h2>
     <div class="card">
         <p>
-            Computer Science Engineering student with hands-on experience in Python and web development.
-            Passionate about building real-world applications and continuously improving technical skills.
+            I am a Computer Science Engineering student with a strong interest in software development and problem-solving.
+            I have built projects using Python and web technologies, including a real-time motion detection system.
+
+            Currently, I am focused on improving my skills in data structures, backend development, and building real-world applications.
+            I am actively looking for internship opportunities where I can contribute and grow as a developer.
         </p>
     </div>
 </section>
@@ -137,9 +151,25 @@ footer {
     <h2>Projects</h2>
 
     <div class="card">
-        <h3>Motion Detection System</h3>
+        <<h3>
+            <a href="https://github.com/yourusername/motion-project" target="_blank" style="color:#64ffda;">
+                Motion Detection System 🔗
+            </a>
+        </h3>
         <p>
-            Developed a real-time motion detection system using Python and OpenCV to monitor activity and trigger alerts.
+            Built a real-time motion detection system using Python and OpenCV with frame differencing.
+            Reduced false alerts by optimizing sensitivity and filtering noise in video frames.
+        </p>
+    </div>
+    <div class="card">
+        <h3>
+            <a href="#" target="_blank" style="color:#64ffda;">
+                Portfolio Website 🔗
+            </a>
+        </h3>
+        <p>
+            Designed and deployed a personal portfolio website using HTML, CSS, and JavaScript.
+            Implemented animations and responsive design for better user experience.
         </p>
     </div>
 
@@ -203,7 +233,7 @@ window.addEventListener("scroll", () => {
 
 // Button
 function msg() {
-    document.getElementById("msg").innerText = "Message sent!";
+    document.getElementById("msg").innerText = "Thanks! You can also reach me at vpavanraj32@gmail.com";
 }
 </script>
 
