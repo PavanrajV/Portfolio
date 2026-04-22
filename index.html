@@ -34,27 +34,27 @@ nav {
 nav a {
     color: #64ffda;
     text-decoration: none;
-    transition: 0.3s;
 }
 
 nav a:hover {
     color: white;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
     text-align: center;
-    padding: 100px 20px;
-    animation: fadeIn 1.5s ease-in;
+    padding: 120px 20px;
 }
 
 .hero h1 {
-    font-size: 40px;
+    font-size: 42px;
 }
 
-.hero p {
-    margin-top: 10px;
-    color: #8892b0;
+.typing {
+    color: #64ffda;
+    font-weight: bold;
+    border-right: 2px solid #64ffda;
+    padding-right: 5px;
 }
 
 /* Sections */
@@ -70,12 +70,18 @@ section {
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.6s ease;
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* Contact */
@@ -93,7 +99,6 @@ button {
     border: none;
     background: #64ffda;
     cursor: pointer;
-    font-weight: bold;
 }
 
 /* Footer */
@@ -101,12 +106,6 @@ footer {
     text-align: center;
     padding: 20px;
     background: #020c1b;
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
 }
 </style>
 </head>
@@ -121,15 +120,15 @@ footer {
 
 <div class="hero">
     <h1>Hi, I'm Pavanraj 👋</h1>
-    <p>Aspiring Software Developer | Python | Web Development</p>
+    <p>I am a <span class="typing"></span></p>
 </div>
 
 <section id="about">
     <h2>About Me</h2>
     <div class="card">
         <p>
-            I am a Computer Science Engineering student passionate about building software solutions.
-            I have experience in Python, basic web development, and image processing projects.
+            Computer Science Engineering student with hands-on experience in Python and web development.
+            Passionate about building real-world applications and continuously improving technical skills.
         </p>
     </div>
 </section>
@@ -140,20 +139,20 @@ footer {
     <div class="card">
         <h3>Motion Detection System</h3>
         <p>
-            Built a real-time motion detection system using Python and OpenCV to detect movement and trigger alerts.
+            Developed a real-time motion detection system using Python and OpenCV to monitor activity and trigger alerts.
         </p>
     </div>
 
-    <!-- Add more cards -->
+    <!-- Add more projects -->
 </section>
 
 <section id="contact">
-    <h2>Contact Me</h2>
+    <h2>Contact</h2>
     <div class="card">
         <input type="text" placeholder="Your Name">
         <input type="email" placeholder="Your Email">
         <textarea rows="5" placeholder="Message"></textarea>
-        <button onclick="showMessage()">Send</button>
+        <button onclick="msg()">Send</button>
         <p id="msg"></p>
     </div>
 </section>
@@ -163,8 +162,48 @@ footer {
 </footer>
 
 <script>
-function showMessage() {
-    document.getElementById("msg").innerText = "Message sent successfully!";
+// Typing Effect
+const roles = ["Software Developer", "Python Developer", "Web Developer"];
+let i = 0, j = 0, current = "", isDeleting = false;
+
+function type() {
+    current = roles[i];
+    if (isDeleting) {
+        document.querySelector(".typing").textContent = current.substring(0, j--);
+    } else {
+        document.querySelector(".typing").textContent = current.substring(0, j++);
+    }
+
+    if (!isDeleting && j === current.length) {
+        isDeleting = true;
+        setTimeout(type, 1000);
+        return;
+    }
+
+    if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % roles.length;
+    }
+
+    setTimeout(type, isDeleting ? 50 : 100);
+}
+type();
+
+// Scroll Animation
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", () => {
+    cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            card.classList.add("show");
+        }
+    });
+});
+
+// Button
+function msg() {
+    document.getElementById("msg").innerText = "Message sent!";
 }
 </script>
 
